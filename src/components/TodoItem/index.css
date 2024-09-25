@@ -13,6 +13,7 @@ li {
 .name {
   color: #000000;
   align-self: flex-start;
+  text-decoration: none;
 }
 
 button {
@@ -24,4 +25,23 @@ button {
   background-color: #ffffff;
   padding: 10px;
   align-self: flex-start;
+}
+.checkbox {
+  border: 2px solid;
+  cursor: pointer;
+  outline: none;
+  margin-right: 10px;
+}
+.checked {
+  text-decoration: line-through;
+}
+.check-cont {
+  display: flex;
+  align-items: center;
+}
+.save-butn {
+  margin-right: 10px;
+  border: none;
+  background-color: #ff0b37;
+  color: #ffffff;
 }
