@@ -129,15 +129,17 @@ class SimpleTodos extends Component {
               Add
             </button>
           </div>
-          {todoList.map(eachTodo => (
-            <TodoItem
-              itemDetails={eachTodo}
-              deleteItem={this.deleteItem}
-              key={eachTodo.id}
-              onCheck={this.onCheck}
-              onEditedTask={this.changeEditedValue}
-            />
-          ))}
+          <ul>
+            {todoList.map(eachTodo => (
+              <TodoItem
+                itemDetails={eachTodo}
+                deleteItem={this.deleteItem}
+                key={eachTodo.id}
+                onCheck={this.onCheck}
+                onEditedTask={this.changeEditedValue}
+              />
+            ))}
+          </ul>
           <button
             className="main-save-button"
             type="button"

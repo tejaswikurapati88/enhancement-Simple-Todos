@@ -34,12 +34,21 @@ const TodoItem = props => {
     <li>
       {isEdit ? (
         <div className="cont">
-          <input
-            className="edit-input"
-            type="text"
-            value={taskTitle}
-            onChange={onChangeTitle}
-          />
+          <div className="edit-cont">
+            <input
+              className="checkbox"
+              checked={isChecked}
+              onChange={onClickCheckInput}
+              type="checkbox"
+              id={id}
+            />
+            <input
+              className="edit-input"
+              type="text"
+              value={taskTitle}
+              onChange={onChangeTitle}
+            />
+          </div>
           <div>
             <button
               className="save-butn"
@@ -67,7 +76,7 @@ const TodoItem = props => {
               {title}
             </p>
           </div>
-          <div>
+          <div className="btns-cont">
             <button className="save-butn" type="button" onClick={onClickEdit}>
               Edit
             </button>

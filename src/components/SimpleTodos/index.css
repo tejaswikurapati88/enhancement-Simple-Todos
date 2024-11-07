@@ -8,6 +8,9 @@
   descent-override: 1px solid #ffffff;
   border-radius: 10px;
 }
+ul {
+  padding-inline-start: 0px;
+}
 .bg-container {
   background-color: #ffc2a0;
   font-family: 'Roboto';
@@ -18,6 +21,7 @@
   align-items: center;
   padding-top: 100px;
   padding-bottom: 50px;
+
   overflow: scroll;
 }
 .container {
@@ -31,12 +35,24 @@
   background-color: #ffffff;
   width: 80%;
   margin-top: 10px;
+  padding-left: 80px;
+  padding-right: 80px;
 }
+
 .main-heading {
   font-weight: bold;
   font-size: 60px;
   color: #ff8542;
   text-align: center;
+}
+@media (max-width:576px){
+  .container{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .main-heading{
+    font-size: 50px;
+  }
 }
 .add-cont {
   display: flex;
@@ -52,7 +68,7 @@
   font-family: 'Roboto';
   width: 300px;
   height: 40px;
-  margin-left: 70px;
+  margin-left: 10px;
   outline: none;
 }
 .add-button {
