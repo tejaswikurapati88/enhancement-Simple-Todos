@@ -4,13 +4,13 @@ import {useState} from 'react'
 import './index.css'
 
 const TodoItem = props => {
-  const {deleteItem, itemDetails, onEditedTask} = props
-  const {id, title} = itemDetails
+  const {deleteItem, itemDetails, onEditedTask, onCheck} = props
+  const {id, title, status} = itemDetails
   const onDeleteTodo = () => {
     deleteItem(id)
   }
   const [isEdit, setIsEdit] = useState(false)
-  const [isChecked, setCheck] = useState(false)
+  const [isChecked, setCheck] = useState(status)
   const [taskTitle, setTaskTitle] = useState(title)
 
   const onClickEdit = () => {
@@ -24,6 +24,7 @@ const TodoItem = props => {
     setTaskTitle(event.target.value)
   }
   const onClickCheckInput = event => {
+    onCheck(event.target.checked, id)
     setCheck(event.target.checked)
   }
 
@@ -40,10 +41,14 @@ const TodoItem = props => {
             onChange={onChangeTitle}
           />
           <div>
-            <button className="save-butn" onClick={onSaveEditTask}>
+            <button
+              className="save-butn"
+              type="button"
+              onClick={onSaveEditTask}
+            >
               Save
             </button>
-            <button onClick={onDeleteTodo} className="delete-btn">
+            <button onClick={onDeleteTodo} type="button" className="delete-btn">
               Delete
             </button>
           </div>
@@ -63,10 +68,10 @@ const TodoItem = props => {
             </p>
           </div>
           <div>
-            <button className="save-butn" onClick={onClickEdit}>
+            <button className="save-butn" type="button" onClick={onClickEdit}>
               Edit
             </button>
-            <button onClick={onDeleteTodo} className="delete-btn">
+            <button onClick={onDeleteTodo} type="button" className="delete-btn">
               Delete
             </button>
           </div>

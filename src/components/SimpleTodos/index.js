@@ -8,51 +8,59 @@ const initialTodosList = [
   {
     id: 1,
     title: 'Book the ticket for today evening',
+    status: false,
   },
   {
     id: 2,
     title: 'Rent the movie for tomorrow movie night',
+    status: false,
   },
   {
     id: 3,
     title: 'Confirm the slot for the yoga session tomorrow morning',
+    status: false,
   },
   {
     id: 4,
     title: 'Drop the parcel at Bloomingdale',
+    status: false,
   },
   {
     id: 5,
     title: 'Order fruits on Big Basket',
+    status: false,
   },
   {
     id: 6,
     title: 'Fix the production issue',
+    status: false,
   },
   {
     id: 7,
     title: 'Confirm my slot for Saturday Night',
+    status: false,
   },
   {
     id: 8,
     title: 'Get essentials for Sunday car wash',
+    status: false,
   },
 ]
 
 class SimpleTodos extends Component {
-  state = {todoList: initialTodosList, inpu: ''}
+  state = {todoList: initialTodosList, inpu: '', status: false}
 
   componentDidMount() {
     let todolocallist = []
     const stringifiedTodoList = localStorage.getItem('todolocallist')
     const parsedTodoList = JSON.parse(stringifiedTodoList)
+    console.log(parsedTodoList)
     if (parsedTodoList === null) {
       todolocallist = []
     } else {
       todolocallist = parsedTodoList
     }
     this.setState({todoList: todolocallist})
-    console.log(parsedTodoList)
   }
 
   deleteItem = id => {
@@ -66,16 +74,15 @@ class SimpleTodos extends Component {
   }
 
   onAddButton = () => {
-    const {inpu, todoList} = this.state
-    todoList.push({id: uuidv4(), title: inpu})
+    const {inpu, todoList, status} = this.state
+    todoList.push({id: uuidv4(), title: inpu, status})
     this.setState({todoList, inpu: ''})
   }
 
   saveItems = () => {
     const {todoList} = this.state
-
-    localStorage.setItem('todolocallist', JSON.stringify(todoList))
     console.log(todoList)
+    localStorage.setItem('todolocallist', JSON.stringify(todoList))
   }
 
   changeEditedValue = (id, taskTitle) => {
@@ -87,6 +94,17 @@ class SimpleTodos extends Component {
       return each
     })
     this.setState({todoList: newUpdatedList})
+  }
+
+  onCheck = (val, id) => {
+    const {todoList} = this.state
+    const updatedList = todoList.map(each => {
+      if (each.id === id) {
+        return {...each, status: val}
+      }
+      return each
+    })
+    this.setState({todoList: updatedList})
   }
 
   render() {
@@ -116,10 +134,15 @@ class SimpleTodos extends Component {
               itemDetails={eachTodo}
               deleteItem={this.deleteItem}
               key={eachTodo.id}
+              onCheck={this.onCheck}
               onEditedTask={this.changeEditedValue}
             />
           ))}
-          <button className="main-save-button" onClick={this.saveItems}>
+          <button
+            className="main-save-button"
+            type="button"
+            onClick={this.saveItems}
+          >
             Save
           </button>
         </div>
